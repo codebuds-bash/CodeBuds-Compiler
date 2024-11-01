@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
 body {
@@ -12,101 +11,259 @@ body {
   align-items: center;
   min-height: 100vh;
   background-color: #f4f4f9;
+  font-family: 'JetBrains Mono', monospace; /* Updated font family */
 }
 
+body.dark-theme {
+  background-color: #252532; /* Dark background */
+}
+
+/* Container */
 .container {
-  width: 100%;
-  max-width: 800px;
-  padding: 20px;
+  height: 700px;
+  width: 1500px;
+  padding: 30px; /* Increased padding */
   background-color: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Slightly darker shadow */
+  border-radius: 10px; /* Rounded corners */
 }
 
-h2 {
-  text-align: center;
+body.dark-theme .container {
+  background-color: #333333; /* Dark theme container */
+}
+
+/* Text Color */
+h2{
   color: #333;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+} 
+label, h3 {
+  color: #333;
+}
+
+body.dark-theme h2,
+body.dark-theme label,
+body.dark-theme h3 {
+  color: #ffffff; /* White text for headings in dark theme */
 }
 
 /* Language Selector */
 .select-container {
+  width: 45%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
+  justify-content: flex-start; /* Changed to flex-start for left alignment */
+  margin-bottom: 20px; /* Increased margin for spacing */
 }
 
 label {
   font-weight: bold;
   color: #333;
+  font-size: 1rem; /* Decreased font size */
+  margin-right: 10px; /* Add margin to the right of the label */
+}
+
+body.dark-theme label {
+  color: #ffffff; /* White text for label in dark theme */
 }
 
 select {
-  width: 60%;
-  padding: 8px;
+  width: 40%; /* Decreased width */
+  padding: 6px; /* Decreased padding */
   border-radius: 5px;
   border: 1px solid #ddd;
   background-color: #f0f0f0;
-  font-size: 1rem;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1rem; /* Decreased font size */
+  font-weight:bolder;
+
 }
 
-/* Code Editor */
+
+
+body.dark-theme select {
+  background-color: #444444; /* Dark background for select in dark theme */
+  color: #ffffff; /* White text for select in dark theme */
+}
+
+/* Code Editor and Output Layout */
+.editor-output-container {
+  display: flex; /* Flexbox for horizontal alignment */
+  margin-bottom: 20px; /* Increased margin for spacing */
+}
+
+.editor-output-container .output-container {
+  margin-top: 10px; /* Adjusted margin to reduce space above the output */
+  flex: 1; /* Allow output section to grow */
+}
+
 .textarea-container {
-  margin-bottom: 15px;
+  position: relative; /* Set to relative for positioning line numbers */
+  flex: 1; /* Allow textarea to grow */
+  margin-right: 20px; /* Space between textarea and output */
 }
 
+
+
+/* Adjust Textarea */
 textarea {
-  width: 100%;
-  height: 200px;
-  padding: 10px;
-  font-family: monospace;
-  font-size: 1rem;
+  width: 700px; /* Adjusted width to account for line numbers + margin */
+  height: 400px; /* Fixed height */
+  padding: 15px 15px 15px 20px; /* Increased left padding for space on the left */
+   /* Added margin to the left of the textarea */
+  font-family: 'JetBrains Mono', monospace; /* Updated font family */
+  font-size: 1.1rem; /* Increased font size */
   border: 1px solid #ddd;
   border-radius: 5px;
-  resize: vertical;
-  background-color: #f9f9f9;
+  resize: none; /* Prevent resizing */
+  background-color: #f9f9f9; /* Light background */
+  overflow-y: auto; /* Allow scroll for overflow */
 }
 
-/* Run Button */
-button {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  color: #ffffff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-bottom: 20px;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Output Section */
-.output-container {
-  margin-top: 20px;
+body.dark-theme textarea {
+  background-color: #333333; /* Dark background for textarea in dark theme */
+  color: #ffffff; /* White text for textarea in dark theme */
 }
 
 h3 {
+  margin-top: -45px;
   color: #333;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 0px; /* No space below the heading */
+}
+
+body.dark-theme h3 {
+  color: #ffffff; /* White text for h3 in dark theme */
 }
 
 #output {
+  margin-top: 10px;
   width: 100%;
-  min-height: 150px;
-  background-color: #f7f7f7;
-  padding: 10px;
+  min-height: 200px; /* Increased minimum height */
+  background-color: #f7f7f7; /* Light background */
+  padding: 15px; /* Increased padding */
   border: 1px solid #ddd;
   border-radius: 5px;
-  font-family: monospace;
-  font-size: 1rem;
+  font-family: 'JetBrains Mono', monospace; /* Updated font family */
+  font-size: 1.1rem; /* Increased font size */
   color: #444;
   white-space: pre-wrap;
   overflow-y: auto;
+}
+
+body.dark-theme #output {
+  background-color: #333333; /* Dark background for output in dark theme */
+  color: #ffffff; /* White text for output in dark theme */
+}
+
+/* Run Button */
+.shadow__btn {
+  padding: 10px 20px;
+  border: none;
+  font-size: 17px;
+  color: #fff;
+  border-radius: 7px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 0.5s;
+  transition-property: box-shadow;
+  background: rgb(0, 221, 22);
+  box-shadow: 0 0 25px rgb(0, 221, 22);;
+}
+
+.shadow__btn:hover {
+  box-shadow: 0 0 5px rgb(0, 221, 22),
+              0 0 25px rgb(0, 221, 22),
+              0 0 50px rgb(0, 221, 22),
+              0 0 100px rgb(0, 221, 22);
+}
+
+/* Theme Toggle Styles */
+.theme-toggle-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+/* Switch Button Styles */
+.switch-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 55px;
+}
+
+.switch-button .switch-outer {
+  height: 100%;
+  background: #252532;
+  width: 130px; /* Increased width for more space */
+  border-radius: 165px;
+  box-shadow: inset 0px 5px 10px 0px #16151c, 0px 3px 6px -2px #403f4e;
+  border: 1px solid #32303e;
+  padding: 6px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.switch-button .switch-outer input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.switch-button .switch-outer .button-toggle {
+  height: 45px; /* Increased height */
+  width: 45px; /* Increased width */
+  background: linear-gradient(#3b3a4e, #272733);
+  border-radius: 100%;
+  box-shadow: inset 0px 5px 4px 0px #424151, 0px 4px 15px 0px #0f0e17;
+  position: relative;
+  z-index: 2;
+  transition: left 0.3s ease-in;
+  left: 0;
+}
+
+.switch-button .switch-outer input[type="checkbox"]:checked + .button .button-toggle {
+  left: 60%; /* Adjusted for more space */
+}
+
+.switch-button .switch-outer input[type="checkbox"]:checked + .button .button-indicator {
+  animation: indicator 1s forwards;
+}
+
+.switch-button .switch-outer .button {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.switch-button .switch-outer .button-indicator {
+  height: 30px; /* Increased height */
+  width: 30px; /* Increased width */
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 3px solid #ef565f;
+  box-sizing: border-box;
+  right: 10px;
+  position: relative;
+}
+
+@keyframes indicator {
+  30% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    border: 3px solid #60d480;
+    left: -68%;
+  }
 }

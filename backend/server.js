@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
 app.use(cors({
     origin: 'https://code-buds-compiler.vercel.app/', // Replace with your actual frontend URL on Vercel
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ['Content-Type'],
     optionsSuccessStatus: 200
 }));
 // Middleware

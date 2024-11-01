@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
+    // Initialize theme toggle event listener
+    const themeToggle = document.querySelector('.switch-button input[type="checkbox"]');
+    themeToggle.addEventListener('change', () => {
+        document.body.classList.toggle('dark-theme');
+    });
+});
+
 async function executeCode() {
     const code = document.getElementById("code").value;
     const language = document.getElementById("language").value;
@@ -27,3 +35,4 @@ async function executeCode() {
         document.getElementById("output").innerText = "An error occurred while executing code.";
     }
 }
+

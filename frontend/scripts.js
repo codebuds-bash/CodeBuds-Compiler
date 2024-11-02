@@ -17,7 +17,7 @@ async function executeCode() {
     };
 
     try {
-        const response = await fetch("https://codebuds-compiler.onrender.com", {
+        const response = await fetch("http://localhost:3000/execute", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

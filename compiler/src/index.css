@@ -1,0 +1,134 @@
+/* Add these to your index.css for smooth transitions */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: var(--radius);
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+.dark .modal-content {
+  background-color: var(--surface-dark);
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+.dark .close-button {
+  color: var(--text-dark);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--primary-light);
+}
+
+.dark .input-icon {
+  color: var(--primary-dark);
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  font-family: inherit;
+  transition: var(--transition);
+}
+
+.dark input {
+  background-color: #2a2a2a;
+  border-color: #444;
+  color: var(--text-dark);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.dark input:focus {
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 2px rgba(72, 149, 239, 0.2);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--primary-light);
+  color: white;
+  border-radius: var(--radius);
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.dark .submit-button {
+  background-color: var(--primary-dark);
+}
+
+.error-message {
+  color: var(--error-light);
+  background-color: rgba(239, 35, 60, 0.1);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.dark .error-message {
+  color: var(--error-dark);
+  background-color: rgba(247, 37, 133, 0.1);
+}
+
+.auth-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.auth-footer button {
+  background: none;
+  border: none;
+  color: var(--primary-light);
+  font-weight: 600;
+  padding: 0;
+}
+
+.dark .auth-footer button {
+  color: var(--primary-dark);
+}

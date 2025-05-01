@@ -1,0 +1,65 @@
+/* Style the language dropdown container */
+.monaco-editor .select-box {
+    border-radius: 4px;
+    background-color: var(--surface-light);
+    border: 1px solid var(--primary-light);
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .dark .monaco-editor .select-box {
+    background-color: var(--surface-dark);
+    border-color: var(--primary-dark);
+    color: var(--text-dark);
+  }
+  
+  /* Style the dropdown arrow */
+  .monaco-editor .select-box-dropdown-arrow {
+    fill: var(--primary-light);
+  }
+  
+  .dark .monaco-editor .select-box-dropdown-arrow {
+    fill: var(--primary-dark);
+  }
+  
+  /* Style the dropdown options */
+  .monaco-editor .select-box-dropdown-container {
+    background-color: var(--surface-light);
+    border: 1px solid var(--primary-light);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+  }
+  
+  .dark .monaco-editor .select-box-dropdown-container {
+    background-color: var(--surface-dark);
+    border-color: var(--primary-dark);
+  }
+  
+  /* Style individual options */
+  .monaco-editor .select-box-dropdown-container .select-box-dropdown-list-item {
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .dark .monaco-editor .select-box-dropdown-container .select-box-dropdown-list-item {
+    color: var(--text-dark);
+  }
+  
+  /* Hover state */
+  .monaco-editor .select-box-dropdown-container .select-box-dropdown-list-item:hover {
+    background-color: rgba(67, 97, 238, 0.1);
+  }
+  
+  .dark .monaco-editor .select-box-dropdown-container .select-box-dropdown-list-item:hover {
+    background-color: rgba(72, 149, 239, 0.1);
+  }
+  
+  /* Selected item */
+  .monaco-editor .select-box-dropdown-container .select-box-dropdown-list-item.selected {
+    background-color: var(--primary-light);
+    color: white;
+  }
+  
+  .dark .monaco-editor .select-box-dropdown-container .select-box-dropdown-list-item.selected {
+    background-color: var(--primary-dark);
+  }

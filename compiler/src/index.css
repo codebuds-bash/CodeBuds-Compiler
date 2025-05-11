@@ -3,6 +3,12 @@ html {
   scroll-behavior: smooth;
 }
 
+.navbar img{
+  width: 40%;
+  height: auto;
+}
+
+
 /* Modal styles */
 .modal-overlay {
   position: fixed;

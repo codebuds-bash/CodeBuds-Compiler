@@ -12,7 +12,7 @@ import { FiPlay, FiDownload, FiMoon, FiSun, FiUser, FiLogOut, FiLogIn, FiEdit } 
 import './App.css';
 import '@fontsource/inter';
 
-// Components
+// Components   
 import AuthModal from './components/AuthModal';
 import CodeHistory from './components/CodeHistory';
 import TerminalOutput from './components/TerminalOutput';
@@ -42,37 +42,30 @@ function App() {
     setCode(value);
   };
 
-  const runCode = async () => {
-    setIsRunning(true);
-    try {
-      const response = await axios.post('/api/compile', {
-        code,
-        language
-      }, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      
-      setOutput(response.data.output);
-      
-      if (user) {
-        await axios.post('/api/history', {
-          code,
-          language,
-          output: response.data.output
-        }, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-      }
-    } catch (error) {
-      setOutput(`Error: ${error.response?.data?.message || error.message}`);
-    } finally {
-      setIsRunning(false);
-    }
-  };
+ const runCode = () => {
+  if (code.includes('window') || code.includes('document') || code.includes('fetch')) {
+    setOutput("❌ Security Error: Use of restricted keywords.");
+    return;
+  }
+  setIsRunning(true);
+  try {
+    // Redirect console.log to capture output
+    const log = [];
+    const originalLog = console.log;
+    console.log = (...args) => log.push(args.join(' '));
+
+    // Use Function constructor for better scoping
+    new Function(code)();
+
+    console.log = originalLog; // Restore original console.log
+    setOutput(log.join('\n'));
+  } catch (err) {
+    setOutput(`Error: ${err.message}`);
+  } finally {
+    setIsRunning(false);
+  }
+};
+
 
   const downloadCode = () => {
     const extension = getFileExtension(language);
@@ -119,8 +112,8 @@ function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="logo-primary">Code</span>
-            <span className="logo-secondary">Buds</span>
+          <img src="/logo.png" alt="Logo" />
+   
           </motion.div>
 
           <div className="navbar-controls">

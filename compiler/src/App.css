@@ -68,7 +68,7 @@ body {
 }
 
 .dark .navbar {
-  background-color: var(--surface-dark);
+
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -98,14 +98,15 @@ body {
 .navbar-controls {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
+
 
 /* Buttons */
 button {
@@ -117,7 +118,9 @@ button {
   transition: var(--transition);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+} .download-button {
+  margin-right: 30px;
 }
 
 .run-button {

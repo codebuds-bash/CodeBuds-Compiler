@@ -3,13 +3,7 @@ import { motion } from 'framer-motion';
 
 const languages = [
   { value: 'javascript', label: 'JavaScript' },
-  { value: 'python', label: 'Python' },
-  { value: 'java', label: 'Java' },
-  { value: 'go', label: 'Go' },
-  { value: 'c', label: 'C' },
-  { value: 'cpp', label: 'C++' },
-  { value: 'ruby', label: 'Ruby' },
-  { value: 'rust', label: 'Rust' }
+  
 ];
 
 const LanguageSelector = ({ language, setLanguage }) => {

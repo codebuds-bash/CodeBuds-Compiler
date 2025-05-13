@@ -121,7 +121,8 @@ function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-          <img src="/logo.png" alt="Logo" />
+
+          <a href="https://code-buds-website.vercel.app/" target="_blank" rel="noopener noreferrer"><img src="/logo.png" alt="Logo" /> </a>
    
           </motion.div>
 

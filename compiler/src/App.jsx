@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { motion, AnimatePresence } from 'framer-motion';
 import MonacoEditor from '@monaco-editor/react';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 import './monaco-overrides.css';
 import '@fontsource/jetbrains-mono/400.css'; // Regular weight
 import '@fontsource/jetbrains-mono/400-italic.css'; // Italic
@@ -21,14 +22,15 @@ import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [code, setCode] = useState('// Welcome to CodeBuds\n// Start coding here...');
+  const [code, setCode] = useState(`var x = 10;\nfunction test() {\n  console.log(x);\n  var x = 20;\n}\ntest();`);
+  const [output, setOutput] = useState("No output yet. Run your code to see results here.");
   const [language, setLanguage] = useState('javascript');
-  const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
   const [theme, setTheme] = useState('vs-dark');
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [authType, setAuthType] = useState('login');
   const [activeTab, setActiveTab] = useState('editor');
+  
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -42,29 +44,36 @@ function App() {
     setCode(value);
   };
 
- const runCode = () => {
-  if (code.includes('window') || code.includes('document') || code.includes('fetch')) {
-    setOutput("❌ Security Error: Use of restricted keywords.");
-    return;
-  }
-  setIsRunning(true);
-  try {
-    // Redirect console.log to capture output
-    const log = [];
-    const originalLog = console.log;
-    console.log = (...args) => log.push(args.join(' '));
+  const runCode = () => {
+    const logs = [];
+    const originalConsoleLog = console.log;
 
-    // Use Function constructor for better scoping
-    new Function(code)();
+    console.log = (...args) => {
+      // explicitly log `undefined` instead of skipping it
+      if (args.length === 0) {
+        logs.push("undefined");
+      } else {
+        logs.push(args.map(arg => (arg === undefined ? "undefined" : String(arg))).join(" "));
+      }
+    };
 
-    console.log = originalLog; // Restore original console.log
-    setOutput(log.join('\n'));
-  } catch (err) {
-    setOutput(`Error: ${err.message}`);
-  } finally {
-    setIsRunning(false);
-  }
-};
+    try {
+      const wrappedCode = `(function() {\n${code}\n})();`;
+      eval(wrappedCode);
+    } catch (err) {
+      logs.push("❌ Error: " + err.message);
+    } finally {
+      console.log = originalConsoleLog;
+      if (logs.length === 0) {
+        setOutput("⚠️ Your code ran, but nothing was logged.");
+      } else {
+        setOutput(logs.join("\n"));
+      }
+    }
+  };
+
+
+
 
 
   const downloadCode = () => {
